@@ -34,7 +34,7 @@ class Dataset(torch.utils.data.Dataset):
 
 from torch import nn
 
-class BertClassifier(nn.Module):
+class GrBertR(nn.Module):
 
     def __init__(self, dropout=0.1, num_classes=2):
         super(BertClassifier, self).__init__()
