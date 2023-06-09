@@ -56,7 +56,7 @@ class Dataset(torch.utils.data.Dataset):
 
 class GrBertC(nn.Module):
 
-    def __init__(self, dropout=0.1, num_classes=1):
+    def __init__(self, dropout=0.1, num_classes=23):
         super(GrBertC, self).__init__()
         self.bert = BertModel.from_pretrained(model_name)
         self.dropout = nn.Dropout(dropout)
