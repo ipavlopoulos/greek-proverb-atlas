@@ -3,6 +3,7 @@ from tqdm import tqdm
 from torch import nn
 from transformers import BertModel, BertTokenizer
 import torch
+import numpy as np
 from sklearn.preprocessing import OneHotEncoder
 
 model_name = 'nlpaueb/bert-base-greek-uncased-v1'
