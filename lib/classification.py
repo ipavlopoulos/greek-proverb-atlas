@@ -1,12 +1,39 @@
+from torch.optim import Adam
+from tqdm import tqdm
+from torch import nn
 from transformers import BertModel, BertTokenizer
-model_name = 'nlpaueb/bert-base-greek-uncased-v1'
-tokenizer = BertTokenizer.from_pretrained(model_name)
-
 import torch
 from sklearn.preprocessing import OneHotEncoder
 
+model_name = 'nlpaueb/bert-base-greek-uncased-v1'
+tokenizer = BertTokenizer.from_pretrained(model_name)
+
 # the areas that will serve as target label indices
-idx2loc = {i:a for i,a in enumerate(train.area.unique())}
+# idx2loc = {i:a for i,a in enumerate(train.area.unique())}
+idx2loc = {0: 'Πόντος',
+ 1: 'Κύπρος',
+ 2: 'Κάρπαθος',
+ 3: 'Θεσπρωτία',
+ 4: 'Αμοργός',
+ 5: 'Σκύρος',
+ 6: 'Μικρά Ασία',
+ 7: 'Λέσβος',
+ 8: 'Μακεδονία',
+ 9: 'Λακωνία',
+ 10: 'Εύβοια',
+ 11: 'Επτάνησος',
+ 12: 'Αρκαδία',
+ 13: 'Νάξος',
+ 14: 'Κρήτη',
+ 15: 'Αχαΐα',
+ 16: 'Θράκη',
+ 17: 'Ιωάννινα',
+ 18: 'Αιτωλία',
+ 19: 'Κεφαλληνία',
+ 20: 'Ανατολική Θράκη',
+ 21: 'Ρόδος',
+ 22: 'Ήπειρος'}
+
 loc2idx = {idx2loc[i]:i for i in idx2loc}
 
 class Dataset(torch.utils.data.Dataset):
@@ -26,7 +53,6 @@ class Dataset(torch.utils.data.Dataset):
         batch_labels = self.labels[idx]
         return batch_texts, batch_labels
 
-  from torch import nn
 
 class GrBertC(nn.Module):
 
@@ -48,8 +74,6 @@ class GrBertC(nn.Module):
         x = self.linear2(x)
         return x
       
-from torch.optim import Adam
-from tqdm import tqdm
 
 def validate(model, dataloader, device="cpu", criterion=nn.CrossEntropyLoss()):
     predictions, gold_labels = [], []
