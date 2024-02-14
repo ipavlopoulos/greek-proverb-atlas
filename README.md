@@ -1,4 +1,4 @@
-# A computational study of Greek proverbs
+# Towards a Greek Proverb Atlas: A computational study of Greek proverbs
 
 ## The dataset
 * Proverbs collected from the Hellenic Folklore Research Centre (http://www.kentrolaografias.gr). 
